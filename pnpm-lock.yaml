@@ -14,6 +14,9 @@ importers:
       json-server:
         specifier: ^0
         version: 0.17.4
+      lib-flexible:
+        specifier: ^0.3.2
+        version: 0.3.2
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -51,6 +54,9 @@ importers:
       globals:
         specifier: ^15.15.0
         version: 15.15.0
+      postcss-pxtorem:
+        specifier: ^6.1.0
+        version: 6.1.0(postcss@8.5.3)
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
@@ -1082,6 +1088,9 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
+  lib-flexible@0.3.2:
+    resolution: {integrity: sha512-9yowMWA70tKhKdCJDaltY0mNQG4OWo7pWKScnTp9aiSxS7s20ZYlwBRE3335nweOf5qKXVC7sDxJwMPM8/MFZg==}
+
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
@@ -1257,6 +1266,11 @@ packages:
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+
+  postcss-pxtorem@6.1.0:
+    resolution: {integrity: sha512-ROODSNci9ADal3zUcPHOF/K83TiCgNSPXQFSbwyPHNV8ioHIE4SaC+FPOufd8jsr5jV2uIz29v1Uqy1c4ov42g==}
+    peerDependencies:
+      postcss: ^8.0.0
 
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
@@ -2591,6 +2605,8 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
+  lib-flexible@0.3.2: {}
+
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
@@ -2739,6 +2755,10 @@ snapshots:
       semver-compare: 1.0.0
 
   pluralize@8.0.0: {}
+
+  postcss-pxtorem@6.1.0(postcss@8.5.3):
+    dependencies:
+      postcss: 8.5.3
 
   postcss@8.5.3:
     dependencies:
