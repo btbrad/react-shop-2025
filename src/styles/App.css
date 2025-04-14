@@ -1,0 +1,59 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+}
+.guide-page {
+  padding-top: 100px;
+  opacity: 0;
+  transition: all 3s;
+}
+.guide-page .main-pic {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+}
+.guide-page .title {
+  color: #242424;
+  font-weight: bold;
+  font-size: 30PX;
+  line-height: 40px;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+.guide-page .slogan1, .guide-page .slogan2 {
+  color: green;
+  font-size: 46PX;
+  line-height: 60px;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  font-style: italic;
+}
+.guide-page .slogan1 {
+  margin-top: 40px;
+}
+@font-face {
+  font-family: 'iconfont';  /* Project id 4892857 */
+  src: url('//at.alicdn.com/t/c/font_4892857_07tzolxqzon3.woff2?t=1744639267700') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4892857_07tzolxqzon3.woff?t=1744639267700') format('woff'),
+       url('//at.alicdn.com/t/c/font_4892857_07tzolxqzon3.ttf?t=1744639267700') format('truetype');
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:16px;font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.guide-page .arrow-right {
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+  font-size: 30PX;
+  color: green;
+  font-weight: bold;
+}
