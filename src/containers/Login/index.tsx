@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './style.css'
+import useRequest from '../../utils/useRequest'
 
 type TabValue = 'login' | 'register'
 
@@ -19,9 +20,27 @@ const Login = () => {
     setTab(tab)
   }
 
+  const { data, loaded, error, request } = useRequest(
+    'http://localhost:3001/login',
+    'POST',
+    {
+      ...loginForm,
+    }
+  )
   const handleLogin = () => {
     console.log(loginForm)
+    request()
+    console.log(data, error, loaded)
   }
+
+  useEffect(() => {
+    if (data) {
+      alert('登录成功')
+    }
+    if (error) {
+      alert('登录失败')
+    }
+  }, [data, error])
 
   return (
     <div className="page login-page">

@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
         user: {
           token: '123',
         },
+        message: '登录成功',
       })
     } else {
       return res.status(400).json({
