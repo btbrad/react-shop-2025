@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
     if (req.body.username === 'admin' && req.body.password === '123456') {
       return res.status(200).json({
         user: {
-          token: '123',
+          token: '123sdfihdsflsdfjk123',
         },
         message: '登录成功',
       })

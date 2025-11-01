@@ -10,25 +10,32 @@ const useRequest = <T,>(url: string, method: Method, payload: unknown) => {
     controllerRef.current.abort()
   }
 
-  const request = async () => {
+  const request = () => {
     // 清空之前的请求状态和数据
     setData(null)
     setError('')
     setLoaded(false)
 
-    try {
-      const response = await axios.request<T>({
+    return axios
+      .request<T>({
         url,
         method,
         signal: controllerRef.current.signal,
         data: payload,
       })
-      setData(response.data)
-    } catch (e: unknown) {
-      setError((e as Error).message || '请求失败')
-    } finally {
-      setLoaded(true)
-    }
+      .then((res) => {
+        setData(res.data)
+        if (res.data) {
+          return res.data
+        }
+      })
+      .catch((e) => {
+        setError((e as Error).message || '请求失败')
+        throw new Error(e)
+      })
+      .finally(() => {
+        setLoaded(true)
+      })
   }
 
   return { data, error, loaded, request, cancel }
