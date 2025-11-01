@@ -9,6 +9,13 @@ interface LoginParams {
   password: string
 }
 
+interface ResponseType {
+  user: {
+    token: string
+  }
+  message: string
+}
+
 const Login = () => {
   const [tab, setTab] = useState<TabValue>('login')
   const [loginForm, setLoginForm] = useState<LoginParams>({
@@ -20,7 +27,7 @@ const Login = () => {
     setTab(tab)
   }
 
-  const { data, loaded, error, request } = useRequest(
+  const { data, loaded, error, request } = useRequest<ResponseType>(
     'http://localhost:3001/login',
     'POST',
     {
