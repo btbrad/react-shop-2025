@@ -1,5 +1,12 @@
-import { forwardRef, useImperativeHandle, useState } from 'react'
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import './style.scss'
+import { createPortal } from 'react-dom'
 
 export interface ModalType {
   showMessage: (message: string) => void
@@ -8,6 +15,7 @@ export interface ModalType {
 const Modal = forwardRef<ModalType>((props, ref) => {
   const [showModal, setShowModal] = useState(false)
   const [message, setMessage] = useState('')
+  const divElement = useRef<HTMLDivElement>(document.createElement('div'))
 
   useImperativeHandle(
     ref,
@@ -25,12 +33,27 @@ const Modal = forwardRef<ModalType>((props, ref) => {
     []
   )
 
-  return (
-    showModal && (
-      <div className="modal">
-        <div className="modal-text">{message}</div>
-      </div>
-    )
+  useEffect(() => {
+    const divNode = divElement.current
+    if (showModal) {
+      document.body.appendChild(divNode)
+    } else {
+      if (divNode.parentElement) {
+        document.body.removeChild(divNode)
+      }
+    }
+    return () => {
+      if (divNode.parentElement) {
+        document.body.removeChild(divNode)
+      }
+    }
+  }, [showModal])
+
+  return createPortal(
+    <div className="modal">
+      <div className="modal-text">{message}</div>
+    </div>,
+    divElement.current
   )
 })
 
