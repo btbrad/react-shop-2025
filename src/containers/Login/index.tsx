@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
 import './style.css'
 import useRequest from '../../utils/useRequest'
-import Modal from '../../components/Modal'
+import Modal, { ModalType } from '../../components/Modal'
 
 type TabValue = 'login' | 'register'
 
@@ -23,8 +23,8 @@ const Login = () => {
     username: '',
     password: '',
   })
-  const [showModal, setShowModal] = useState(false)
-  const [modalMsg, setModalMsg] = useState('')
+
+  const modalRef = useRef<ModalType>(null)
 
   const handleSwitchTab = (tab: TabValue) => {
     setTab(tab)
@@ -38,27 +38,20 @@ const Login = () => {
     }
   )
 
-  useEffect(() => {
-    if (showModal) {
-      const timer = setTimeout(() => {
-        setShowModal(false)
-      }, 2000)
-      return () => {
-        clearTimeout(timer)
-      }
-    }
-  }, [showModal])
-
   const handleLogin = () => {
     console.log(loginForm)
+    if (loginForm.username === '' || loginForm.password === '') {
+      modalRef.current?.showMessage('用户名或密码不能为空')
+      return
+    }
     request()
       .then((res) => {
         console.log('登录成功', res)
-        setModalMsg(res?.message || '登录成功')
-        setShowModal(true)
+        modalRef.current?.showMessage(res!.message)
       })
       .catch((err) => {
         console.log('登录失败', err)
+        modalRef.current?.showMessage(err!.message)
       })
   }
 
@@ -116,7 +109,7 @@ const Login = () => {
       ) : (
         <div>注册</div>
       )}
-      {showModal ? <Modal>{modalMsg}</Modal> : null}
+      <Modal ref={modalRef} />
     </div>
   )
 }
