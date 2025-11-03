@@ -16,8 +16,9 @@
   font-weight: bold;
 }
 .login-page .tab-item.active {
-  color: #fff;
-  background-color: #00bcd4;
+  a {
+    color: #00bcd4;
+  }
 }
 .login-page .login-form {
   width: 100%;

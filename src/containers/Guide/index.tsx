@@ -14,7 +14,7 @@ function App() {
 
   const navigate = useNavigate()
   const handleToLogin = useCallback(() => {
-    navigate('/login')
+    navigate('/account/login')
   }, [navigate])
 
   return (
