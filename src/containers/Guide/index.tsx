@@ -14,7 +14,11 @@ function App() {
 
   const navigate = useNavigate()
   const handleToLogin = useCallback(() => {
-    navigate('/account/login')
+    if (localStorage.getItem('token')) {
+      navigate('/home')
+    } else {
+      navigate('/account/login')
+    }
   }, [navigate])
 
   return (

@@ -1,6 +1,8 @@
 import axios, { Method } from 'axios'
 import { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 const useRequest = <T,>(url: string, method: Method, payload: unknown) => {
+  const navigate = useNavigate()
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState('')
   const [loaded, setLoaded] = useState(false)
@@ -16,12 +18,16 @@ const useRequest = <T,>(url: string, method: Method, payload: unknown) => {
     setError('')
     setLoaded(false)
 
+    const loginToken = window.localStorage.getItem('token') || ''
+    const headers = loginToken ? { token: loginToken } : {}
+
     return axios
       .request<T>({
         url,
         method,
         signal: controllerRef.current.signal,
         data: payload,
+        headers,
       })
       .then((res) => {
         setData(res.data)
@@ -30,6 +36,10 @@ const useRequest = <T,>(url: string, method: Method, payload: unknown) => {
         }
       })
       .catch((e) => {
+        if (e?.response?.status === 401) {
+          window.localStorage.removeItem('token')
+          navigate('/account/login')
+        }
         setError((e as Error).message || '请求失败')
         throw new Error(e)
       })

@@ -4,6 +4,7 @@ import Login from './containers/Account/login'
 import Register from './containers/Account/register'
 import Account from './containers/Account'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
+import Home from './containers/Home'
 
 const router = createHashRouter([
   {
@@ -23,6 +24,10 @@ const router = createHashRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: '/home',
+    element: <Home />,
   },
 ])
 

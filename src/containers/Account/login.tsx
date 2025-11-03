@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import useRequest from '../../utils/useRequest'
 import Modal, { ModalType } from '../../components/Modal'
+import { useNavigate } from 'react-router-dom'
 
 interface LoginParams {
   username: string
@@ -22,6 +23,8 @@ const Login = () => {
 
   const modalRef = useRef<ModalType>(null)
 
+  const navigate = useNavigate()
+
   const { request } = useRequest<ResponseType>(
     'http://localhost:3001/login',
     'POST',
@@ -40,6 +43,8 @@ const Login = () => {
       .then((res) => {
         console.log('登录成功', res)
         modalRef.current?.showMessage(res!.message)
+        window.localStorage.setItem('token', res!.user.token)
+        navigate('/home')
       })
       .catch((err) => {
         console.log('登录失败', err)

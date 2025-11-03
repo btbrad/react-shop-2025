@@ -1,14 +1,21 @@
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './style.css'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 const Account = () => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const checkActive = useMemo(
     () => (path: string) => location.pathname.startsWith(path),
     [location.pathname]
   )
+
+  useEffect(() => {
+    if (window.localStorage.getItem('token')) {
+      navigate('/home')
+    }
+  }, [navigate])
 
   return (
     <div className="page login-page">
