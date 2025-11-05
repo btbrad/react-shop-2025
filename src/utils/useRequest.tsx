@@ -1,5 +1,5 @@
 import axios, { Method } from 'axios'
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 const useRequest = <T,>(url: string, method: Method, payload: unknown) => {
   const navigate = useNavigate()
@@ -12,7 +12,7 @@ const useRequest = <T,>(url: string, method: Method, payload: unknown) => {
     controllerRef.current.abort()
   }
 
-  const request = () => {
+  const request = useCallback(() => {
     // 清空之前的请求状态和数据
     setData(null)
     setError('')
@@ -46,7 +46,7 @@ const useRequest = <T,>(url: string, method: Method, payload: unknown) => {
       .finally(() => {
         setLoaded(true)
       })
-  }
+  }, [url, method, payload, navigate])
 
   return { data, error, loaded, request, cancel }
 }

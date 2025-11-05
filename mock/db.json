@@ -1,10 +1,26 @@
 {
   "posts": [
-    { "id": 1, "title": "Hello World" },
-    { "id": 2, "title": "Second Post" }
+    {
+      "id": 1,
+      "title": "Hello World"
+    },
+    {
+      "id": 2,
+      "title": "Second Post"
+    }
   ],
   "users": [
-    { "id": 1, "name": "Tom" },
-    { "id": 2, "name": "Jerry" }
-  ]
+    {
+      "id": 1,
+      "name": "Tom"
+    },
+    {
+      "id": 2,
+      "name": "Jerry"
+    }
+  ],
+  "home": {
+    "longitude": 115.80615604708508,
+    "latitude": 32.889132934302786
+  }
 }

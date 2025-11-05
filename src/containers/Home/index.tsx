@@ -1,13 +1,20 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.css'
 import './index.scss'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import useRequest from '../../utils/useRequest'
 
 const Home = () => {
+  const [position, setPosition] = useState<{
+    longitude: number
+    latitude: number
+  } | null>(null)
+
   useEffect(() => {
     const localPosition = window.localStorage.getItem('position')
     if (localPosition) {
       console.log('本地缓存位置：', JSON.parse(localPosition))
+      setPosition(JSON.parse(localPosition))
       return
     }
 
@@ -21,6 +28,7 @@ const Home = () => {
             'position',
             JSON.stringify({ longitude, latitude })
           )
+          setPosition({ longitude, latitude })
         },
         (err) => {
           console.log(err)
@@ -28,6 +36,15 @@ const Home = () => {
       )
     }
   }, [])
+
+  const { request } = useRequest('http://localhost:3001/home', 'POST', {
+    ...position,
+  })
+
+  useEffect(() => {
+    request()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [position])
 
   return (
     <div>
