@@ -20,7 +20,9 @@
     }
   ],
   "home": {
-    "longitude": 115.80615604708508,
-    "latitude": 32.889132934302786
+    "success": true,
+    "data": {
+      "address": "中国"
+    }
   }
 }

@@ -1,14 +1,16 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.css'
 import './index.scss'
-import { useEffect, useState } from 'react'
-import useRequest from '../../utils/useRequest'
+import { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Home = () => {
   const [position, setPosition] = useState<{
     longitude: number
     latitude: number
   } | null>(null)
+
+  const [address, setAddress] = useState('')
 
   useEffect(() => {
     const localPosition = window.localStorage.getItem('position')
@@ -37,18 +39,28 @@ const Home = () => {
     }
   }, [])
 
-  const { request } = useRequest('http://localhost:3001/home', 'POST', {
-    ...position,
-  })
+  const request = useCallback(() => {
+    if (!position) return
+    return axios.request({
+      url: 'http://localhost:3001/home',
+      method: 'GET',
+      params: {
+        ...position,
+      },
+    })
+  }, [position])
 
   useEffect(() => {
-    request()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position])
+    request()?.then((res) => {
+      console.log(111, res)
+      setAddress(res.data.data.address)
+    })
+  }, [request])
 
   return (
     <div>
       <h1>Home</h1>
+      <p>地址：{address}</p>
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
