@@ -2,18 +2,7 @@ import { useRef, useState } from 'react'
 import useRequest from '../../utils/useRequest'
 import Modal, { ModalType } from '../../components/Modal'
 import { useNavigate } from 'react-router-dom'
-
-interface LoginParams {
-  username: string
-  password: string
-}
-
-interface ResponseType {
-  user: {
-    token: string
-  }
-  message: string
-}
+import type { LoginParams, LoginResponseType } from './types'
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState<LoginParams>({
@@ -25,7 +14,7 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  const { request } = useRequest<ResponseType>(
+  const { request } = useRequest<LoginResponseType>(
     'http://localhost:3001/login',
     'POST',
     {

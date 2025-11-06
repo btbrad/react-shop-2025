@@ -22,7 +22,17 @@
   "home": {
     "success": true,
     "data": {
-      "address": "中国"
+      "address": "中国",
+      "banners": [
+        {
+          "id": 1,
+          "imgUrl": "https://example.com/image1.jpg"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://example.com/image2.jpg"
+        }
+      ]
     }
   }
 }

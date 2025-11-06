@@ -1,20 +1,7 @@
 import { useRef, useState } from 'react'
 import useRequest from '../../utils/useRequest'
 import Modal, { ModalType } from '../../components/Modal'
-
-interface RegisterParams {
-  username: string
-  phone: string
-  password: string
-  confirmPassword: string
-}
-
-interface ResponseType {
-  user: {
-    token: string
-  }
-  message: string
-}
+import type { RegisterParams, RegisterResponseType } from './types'
 
 const Login = () => {
   const [registerForm, setRegisterForm] = useState<RegisterParams>({
@@ -26,7 +13,7 @@ const Login = () => {
 
   const modalRef = useRef<ModalType>(null)
 
-  const { request } = useRequest<ResponseType>(
+  const { request } = useRequest<RegisterResponseType>(
     'http://localhost:3001/register',
     'POST',
     {
