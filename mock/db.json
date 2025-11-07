@@ -66,6 +66,24 @@
           "id": "8",
           "title": "Category 8"
         }
+      ],
+      "newGoods": [
+        {
+          "id": "1",
+          "title": "New Good 1"
+        },
+        {
+          "id": "2",
+          "title": "New Good 2"
+        },
+        {
+          "id": "3",
+          "title": "New Good 3"
+        },
+        {
+          "id": "4",
+          "title": "New Good 4"
+        }
       ]
     }
   }

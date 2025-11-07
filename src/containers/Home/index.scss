@@ -21,3 +21,21 @@
     border: 1px solid #ccc;
   }
 }
+.new-goods {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  .new-good-item { 
+    width: 30.33%;
+    height: 150px;
+    flex-shrink: 0;
+    margin-right: 1%;
+    text-align: center;
+    line-height: 150px;
+    font-size: 18PX;
+    border: 1px solid #ccc;
+  }
+}

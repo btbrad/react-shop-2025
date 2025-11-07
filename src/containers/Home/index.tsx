@@ -3,7 +3,7 @@ import 'swiper/swiper.css'
 import './index.scss'
 import { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
-import type { BannerType, CategoryType } from './types'
+import type { BannerType, CategoryType, NewGoodType } from './types'
 
 const Home = () => {
   const [position, setPosition] = useState<{
@@ -14,6 +14,7 @@ const Home = () => {
   const [address, setAddress] = useState('')
   const [banners, setBanners] = useState<BannerType[]>([])
   const [categories, setCategories] = useState<CategoryType[]>([])
+  const [newGoods, setNewGoods] = useState<NewGoodType[]>([])
 
   useEffect(() => {
     const localPosition = window.localStorage.getItem('position')
@@ -58,6 +59,7 @@ const Home = () => {
       setAddress(res.data.data.address)
       setBanners(res.data.data.banners)
       setCategories(res.data.data.categories)
+      setNewGoods(res.data.data.newGoods)
     })
   }, [request])
 
@@ -81,6 +83,23 @@ const Home = () => {
         {categories.map((category) => (
           <div className="category-item" key={category.id}>
             <div className="category-title">{category.title}</div>
+          </div>
+        ))}
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          fontSize: '20PX',
+        }}
+      >
+        <p>新品尝鲜</p>
+        <p>查看更多&gt;</p>
+      </div>
+      <div className="new-goods">
+        {newGoods.map((good) => (
+          <div className="new-good-item" key={good.id}>
+            <div className="new-good-title">{good.title}</div>
           </div>
         ))}
       </div>
