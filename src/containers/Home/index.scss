@@ -7,3 +7,17 @@
   justify-content: center;
   align-items: center;
 }
+.categories {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  .category-item {
+    width: 25%;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 20PX;
+    border: 1px solid #ccc;
+  }
+}

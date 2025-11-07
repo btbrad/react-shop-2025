@@ -3,7 +3,7 @@ import 'swiper/swiper.css'
 import './index.scss'
 import { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
-import type { BannerType } from './types'
+import type { BannerType, CategoryType } from './types'
 
 const Home = () => {
   const [position, setPosition] = useState<{
@@ -13,6 +13,7 @@ const Home = () => {
 
   const [address, setAddress] = useState('')
   const [banners, setBanners] = useState<BannerType[]>([])
+  const [categories, setCategories] = useState<CategoryType[]>([])
 
   useEffect(() => {
     const localPosition = window.localStorage.getItem('position')
@@ -56,6 +57,7 @@ const Home = () => {
     request()?.then((res) => {
       setAddress(res.data.data.address)
       setBanners(res.data.data.banners)
+      setCategories(res.data.data.categories)
     })
   }, [request])
 
@@ -75,6 +77,13 @@ const Home = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="categories">
+        {categories.map((category) => (
+          <div className="category-item" key={category.id}>
+            <div className="category-title">{category.title}</div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
