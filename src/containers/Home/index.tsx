@@ -4,6 +4,7 @@ import './index.scss'
 import { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 import type { BannerType, CategoryType, NewGoodType } from './types'
+import BottomNav from '../../components/BottomNav'
 
 const Home = () => {
   const [position, setPosition] = useState<{
@@ -103,12 +104,7 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <div className="bottom-nav">
-        <div className="bottom-nav-item">首页</div>
-        <div className="bottom-nav-item">分类</div>
-        <div className="bottom-nav-item">购物车</div>
-        <div className="bottom-nav-item">我的</div>
-      </div>
+      <BottomNav />
     </div>
   )
 }

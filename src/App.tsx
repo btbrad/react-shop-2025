@@ -5,6 +5,9 @@ import Register from './containers/Account/register'
 import Account from './containers/Account'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 import Home from './containers/Home'
+import Category from './containers/Category'
+import Cart from './containers/Cart'
+import Mine from './containers/Mine'
 
 const router = createHashRouter([
   {
@@ -28,6 +31,18 @@ const router = createHashRouter([
   {
     path: '/home',
     element: <Home />,
+  },
+  {
+    path: '/category',
+    element: <Category />,
+  },
+  {
+    path: '/cart',
+    element: <Cart />,
+  },
+  {
+    path: '/mine',
+    element: <Mine />,
   },
 ])
 
