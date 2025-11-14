@@ -103,6 +103,12 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <div className="bottom-nav">
+        <div className="bottom-nav-item">首页</div>
+        <div className="bottom-nav-item">分类</div>
+        <div className="bottom-nav-item">购物车</div>
+        <div className="bottom-nav-item">我的</div>
+      </div>
     </div>
   )
 }
